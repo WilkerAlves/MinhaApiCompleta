@@ -36,7 +36,7 @@ namespace DevIO.Api.Controllers
             return fornecedores;
         }
 
-        [HttpGet("id:guid")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<FornecedorViewModel>> ObterPorId(Guid id)
         {
             var fornecedor = await ObterFornecedorProdutosEndereco(id);

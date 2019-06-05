@@ -26,8 +26,8 @@ namespace DevIO.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper(typeof(Startup));
-            services.ResolveDependencies();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
