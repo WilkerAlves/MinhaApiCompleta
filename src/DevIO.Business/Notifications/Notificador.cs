@@ -18,7 +18,7 @@ namespace DevIO.Business.Notifications
             _notificacoes.Add(notificacao);
         }
 
-        public List<Notificacao> ObterNotificações()
+        public List<Notificacao> ObterNotificacoes()
         {
             return _notificacoes;
         }
