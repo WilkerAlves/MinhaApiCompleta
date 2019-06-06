@@ -64,7 +64,7 @@ namespace DevIO.Api.Controllers
         {
             if (id != fornecedorViewModel.Id)
             {
-                NotificarErro("O id informado não é o memso que foi passado na query");
+                NotificarErro("O id informado não é o mesmo que foi passado na query");
                 return CustomResponse(fornecedorViewModel);
             }
                 
@@ -88,6 +88,27 @@ namespace DevIO.Api.Controllers
             await _fornecedorService.Remover(id);
 
             return CustomResponse();
+        }
+
+        [HttpGet("obter-endereco/{id:guid}")]
+        public async Task<IActionResult> ObterEnderecoPorId(Guid id, EnderecoViewModel enderecoViewModel)
+        {
+            if (id != enderecoViewModel.Id)
+            {
+                NotificarErro("O id informado não é o mesmo que foi passado na query");
+                return CustomResponse(enderecoViewModel);
+            }
+
+            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(enderecoViewModel));
+
+            return CustomResponse(enderecoViewModel);
+        }
+
+        [HttpPut("atualizar-endereco/{id:guid}")]
+        public async Task<EnderecoViewModel> AtualizarEndereco(Guid id)
+        {
+            var enderecoViewModel = _mapper.Map<EnderecoViewModel>(await _enderecoRepository.ObterPorId(id));
+            return enderecoViewModel;
         }
 
         public async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
