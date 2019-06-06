@@ -43,7 +43,7 @@ namespace DevIO.Api.Controllers
             var fornecedor = await ObterFornecedorProdutosEndereco(id);
 
             if (fornecedor == null)
-                return NotFound();
+                return CustomResponse();
 
             return fornecedor;
         }
@@ -83,7 +83,7 @@ namespace DevIO.Api.Controllers
             var fornecedorViewModel = await ObterFornecedorEndereco(id);
 
             if (fornecedorViewModel == null)
-                return NotFound();
+                return CustomResponse();
 
             await _fornecedorService.Remover(id);
 
