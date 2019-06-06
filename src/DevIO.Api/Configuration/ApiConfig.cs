@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DevIO.Api.Controllers
+namespace DevIO.Api.Configuration
 {
     public static class ApiConfig
     {
