@@ -39,16 +39,17 @@ namespace DevIO.Api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors("Development");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                app.UseCors("Production");
                 app.UseHsts();
             }
 
             //tem que vir antes da configuração do mvc
             app.UseAuthentication();
-
             app.UseMvcConfiguration();
         }
     }
