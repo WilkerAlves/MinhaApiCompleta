@@ -69,3 +69,4 @@ namespace DevIO.Api.Extensions
             return claim?.Value;
         }
     }
+}
