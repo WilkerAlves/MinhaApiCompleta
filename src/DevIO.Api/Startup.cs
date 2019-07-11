@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DevIO.Api.Configuration;
-using DevIO.Api.Controllers;
 using DevIO.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

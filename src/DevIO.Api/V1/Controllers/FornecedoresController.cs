@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DevIO.Api.Controllers;
 using DevIO.Api.Extensions;
 using DevIO.Api.ViewModels;
 using DevIO.Business.Interfaces;
@@ -9,17 +10,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DevIO.Api.Controllers
+namespace DevIO.Api.V1.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class FornecedoresController : MainController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
         private readonly IFornecedorService _fornecedorService;
         private readonly IEnderecoRepository _enderecoRepository;
-        
+
 
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
@@ -34,7 +36,8 @@ namespace DevIO.Api.Controllers
             _fornecedorService = fornecedorService;
             _enderecoRepository = enderecoRepository;
         }
-        
+
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<FornecedorViewModel>> ObterTodos()
         {
@@ -59,7 +62,7 @@ namespace DevIO.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
-            
+
             await _fornecedorService.Adicionar(_mapper.Map<Fornecedor>(fornecedorViewModel));
 
             return CustomResponse(fornecedorViewModel);
@@ -74,7 +77,7 @@ namespace DevIO.Api.Controllers
                 NotificarErro("O id informado não é o mesmo que foi passado na query");
                 return CustomResponse(fornecedorViewModel);
             }
-                
+
 
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
